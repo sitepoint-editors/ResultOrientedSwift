@@ -1,14 +1,29 @@
+import Foundation
+import PlaygroundSupport
 
-//: Computing square of the number
+PlaygroundPage.current.needsIndefiniteExecution = true
 
-func square(ofNumber number: Int, completion: (Int) -> Void) {
-    let squared = number * number
-    completion(squared)
+// Computing square of the number, asynchronously:
+
+func square(ofNumber number: Int, completion: @escaping (Int) -> Void) {
+
+    OperationQueue().addOperation {
+        let squared = number * number
+        OperationQueue.main.addOperation {
+            completion(squared)
+        }
+    }
 }
+
+print("squaring")
 
 square(ofNumber: 5) { squared in
     print(squared)
 }
+
+print("no longer squaring")
+
+
 
 //: Result<T> example with division
 
