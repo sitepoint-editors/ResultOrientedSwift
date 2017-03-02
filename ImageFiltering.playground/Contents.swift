@@ -68,6 +68,7 @@ func applyFilterToImage(at urlString: String, completion: @escaping ((Result<UII
 
 let imageURL = Bundle.main.path(forResource: "landscape", ofType: "png")!
 
+// Open the Assistant Editor to see results:
 applyFilterToImage(at: "file://" + imageURL) { result in
     switch result {
     case let .success(filteredImage):
